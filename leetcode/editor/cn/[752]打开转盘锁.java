@@ -72,6 +72,12 @@ class Solution {
 		s2.add(target);
 		while(!s1.isEmpty() && !s2.isEmpty())
 		{
+			if(s1.size() > s2.size())
+			{
+				Set<String> tmp = s1;
+				s1 = s2;
+				s2 = tmp;
+			}
 			Set<String> tmp = new HashSet<>();
 			for(String s : s1)
 			{
