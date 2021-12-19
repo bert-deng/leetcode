@@ -49,32 +49,23 @@
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public int lengthOfLIS(int[] nums) {
-        int n = nums.length;
-        int[] d = new int[n + 1];
-        d[1] = nums[0];
-        int len = 1;
-        for(int i = 1; i < n; ++i)
+        int ans = 0;
+        int[] res = new int[nums.length];
+        int size = 0;
+        for(int i = 0; i < nums.length;i++)
         {
-            if(nums[i] > d[len])
+            int l = 0, r = size;
+            while(l < r)
             {
-                d[++len] = nums[i];
+                int m = (l + r) / 2;
+                if(res[m] < nums[i])
+                    l = m + 1;
+                else r = m;
             }
-            else {
-                int l = 1, r = len, pos = 0;
-                while(l <= r)
-                {
-                    int m = (l + r) >> 1;
-                    if(d[m] < nums[i])
-                    {
-                        l = m + 1;
-                        pos = m;
-                    }
-                    else r = m - 1;
-                }
-                d[pos + 1] = nums[i];
-            }
+            res[l] = nums[i];
+            if(size == l) size++;
         }
-        return len;
+        return size;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
