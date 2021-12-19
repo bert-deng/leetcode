@@ -59,7 +59,7 @@ class Node {
 class Solution {
     public int maxDepth(Node root) {
         if(root == null) return 0;
-        int len = 1;
+        int len = 1; //这个节点不为空，深度最少为1
         for(Node child : root.children)
         {
             len = Math.max(len, maxDepth(child) + 1);
